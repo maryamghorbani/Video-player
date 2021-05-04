@@ -10,5 +10,17 @@ let fwd = controls.querySelector('.forward');
 
 
 play.addEventListener('click', function(){
-    console.log('play video');
+    if(media.paused) {
+        togglePlayIcon();
+        media.play();
+    } else {
+        togglePlayIcon();
+        media.pause();
+    }
 })
+
+function togglePlayIcon() {
+    let icon = play.querySelector('i');
+    icon.classList.toggle('ion-md-pause');
+    icon.classList.toggle('ion-md-play');
+}
