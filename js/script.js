@@ -19,6 +19,14 @@ play.addEventListener('click', function(){
     }
 })
 
+rwd.addEventListener('click', function () {
+    media.currentTime = media.currentTime - 5;
+});
+fwd.addEventListener('click', function () {
+    media.currentTime = media.currentTime + 5;
+});
+
+
 function togglePlayIcon() {
     let icon = play.querySelector('i');
     icon.classList.toggle('ion-md-pause');
