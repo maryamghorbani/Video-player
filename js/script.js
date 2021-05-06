@@ -7,7 +7,8 @@ let rwd = controls.querySelector('.rewind');
 let fwd = controls.querySelector('.forward');
 
 let volumeIcon  = controls.querySelector('.volume .icon');
-let volumeProgressBar = controls.querySelector('.volume .volume__progress')
+let volumeProgressBar = controls.querySelector('.volume .volume__progress');
+let volumeProgressBarInput = volumeProgressBar.querySelector('input');
 
 // let fullscreen = controls.querySelector('.fullscreen');
 
@@ -16,6 +17,8 @@ let currentTime = timeArea.querySelector('.currentTime');
 let videoTime = timeArea.querySelector('.videoTime');
 
 let timerBar = controls.querySelector('.controls__progressbar-current');
+
+media.volume = .5;
 
 
 media.addEventListener("timeupdate", function () {
@@ -52,6 +55,11 @@ timerBar.addEventListener('input' , function () {
 volumeIcon.addEventListener('click', function () {
     volumeProgressBar.classList.toggle('active');
 })
+volumeProgressBarInput.addEventListener('input' , function () {
+    media.volume = this.value / 100;
+    this.style = `background : linear-gradient(90deg, rgba(230,126,34,1) ${this.value}%, #e1e1e1 0%);`
+})
+
 
 
 function togglePlayIcon() {
