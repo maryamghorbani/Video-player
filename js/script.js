@@ -14,27 +14,11 @@ let videoTime = timeArea.querySelector('.videoTime');
 
 
 media.addEventListener("timeupdate", function () {
-    let minutes = Math.floor(media.currentTime / 60);
-    let seconds = Math.floor(media.currentTime - (minutes * 60));
-
-    let minuteValue;
-    let secondValue;
-
-    if (minutes < 10) {
-        minuteValue = '0' + minutes
-    } else {
-        minuteValue = minutes
-    }
-    if (seconds < 10) {
-        secondValue = '0' + seconds
-    } else {
-        secondValue = seconds
-    }
-
-    currentTime.textContent = minuteValue + ':' + secondValue
+    currentTime.textContent = getTime(media.currentTime);
 })
 
 play.addEventListener('click', function(){
+    videoTime.textContent = getTime(media.duration);
     if(media.paused) {
         togglePlayIcon();
         media.play();
@@ -57,4 +41,25 @@ function togglePlayIcon() {
     let icon = play.querySelector('i');
     icon.classList.toggle('ion-md-pause');
     icon.classList.toggle('ion-md-play');
+}
+
+function getTime(time) {
+    let minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time - (minutes * 60));
+
+    let minuteValue;
+    let secondValue;
+
+    if (minutes < 10) {
+        minuteValue = '0' + minutes
+    } else {
+        minuteValue = minutes
+    }
+    if (seconds < 10) {
+        secondValue = '0' + seconds
+    } else {
+        secondValue = seconds
+    }
+
+    return  minuteValue + ':' + secondValue
 }
