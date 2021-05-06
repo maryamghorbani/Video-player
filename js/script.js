@@ -12,9 +12,16 @@ let timeArea = controls.querySelector('.timer');
 let currentTime = timeArea.querySelector('.currentTime');
 let videoTime = timeArea.querySelector('.videoTime');
 
+let timerBar = controls.querySelector('.controls__progressbar-current');
+
 
 media.addEventListener("timeupdate", function () {
     currentTime.textContent = getTime(media.currentTime);
+
+    let barlength = (media.currentTime / media.duration) * 100;
+    timerBar.style = ` background: linear-gradient(90deg, rgba(230,126,34,1) ${barlength}%, #e1e1e1 0%) `;
+    timerBar.value = barlength;
+    console.log(timerBar.value)
 })
 
 play.addEventListener('click', function(){
@@ -35,6 +42,9 @@ fwd.addEventListener('click', function () {
     media.currentTime = media.currentTime + 5;
 });
 
+timerBar.addEventListener('input' , function () {
+    media.currentTime = (this.value / 100) * media.duration; 
+})
 
 
 function togglePlayIcon() {
