@@ -8,6 +8,31 @@ let fwd = controls.querySelector('.forward');
 // let volume = controls.querySelector('.volume');
 // let fullscreen = controls.querySelector('.fullscreen');
 
+let timeArea = controls.querySelector('.timer');
+let currentTime = timeArea.querySelector('.currentTime');
+let videoTime = timeArea.querySelector('.videoTime');
+
+
+media.addEventListener("timeupdate", function () {
+    let minutes = Math.floor(media.currentTime / 60);
+    let seconds = Math.floor(media.currentTime - (minutes * 60));
+
+    let minuteValue;
+    let secondValue;
+
+    if (minutes < 10) {
+        minuteValue = '0' + minutes
+    } else {
+        minuteValue = minutes
+    }
+    if (seconds < 10) {
+        secondValue = '0' + seconds
+    } else {
+        secondValue = seconds
+    }
+
+    currentTime.textContent = minuteValue + ':' + secondValue
+})
 
 play.addEventListener('click', function(){
     if(media.paused) {
@@ -25,6 +50,7 @@ rwd.addEventListener('click', function () {
 fwd.addEventListener('click', function () {
     media.currentTime = media.currentTime + 5;
 });
+
 
 
 function togglePlayIcon() {
