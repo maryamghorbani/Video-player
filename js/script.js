@@ -5,7 +5,10 @@ let controls = playerArea.querySelector('.myplayer__controls');
 let play = controls.querySelector('.play');
 let rwd = controls.querySelector('.rewind');
 let fwd = controls.querySelector('.forward');
-// let volume = controls.querySelector('.volume');
+
+let volumeIcon  = controls.querySelector('.volume .icon');
+let volumeProgressBar = controls.querySelector('.volume .volume__progress')
+
 // let fullscreen = controls.querySelector('.fullscreen');
 
 let timeArea = controls.querySelector('.timer');
@@ -43,7 +46,11 @@ fwd.addEventListener('click', function () {
 });
 
 timerBar.addEventListener('input' , function () {
-    media.currentTime = (this.value / 100) * media.duration; 
+    media.currentTime = (this.value / 100) * media.duration;
+})
+
+volumeIcon.addEventListener('click', function () {
+    volumeProgressBar.classList.toggle('active');
 })
 
 
